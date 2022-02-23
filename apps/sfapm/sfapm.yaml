@@ -28,7 +28,13 @@ spec:
       replicaCount: 1
       autoscaling:
         enabled: false
-      resources: {}
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 1000Mi
+        requests:
+          cpu: 100m
+          memory: 256MiMi
     sfapm:
       replicaCount: 1
       autoscaling:
