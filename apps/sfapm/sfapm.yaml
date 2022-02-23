@@ -28,6 +28,10 @@ spec:
       replicaCount: 1
       autoscaling:
         enabled: false
+    sfapm:
+      replicaCount: 1
+      autoscaling:
+        enabled: false
       resources:
         limits:
           cpu: 1000m
@@ -35,10 +39,6 @@ spec:
         requests:
           cpu: 100m
           memory: 256MiMi
-    sfapm:
-      replicaCount: 1
-      autoscaling:
-        enabled: false
     sfapm_celery:
       periodic:
         replicaCount: 1
