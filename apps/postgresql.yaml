@@ -1,13 +1,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: redis
+  name: postgresql
   namespace: test
 spec:
-  releaseName: test-redis
+  releaseName: test-postgresql
   chart:
     spec:
-      chart: redis
+      chart: postgresql
       sourceRef:
         kind: HelmRepository
         name: snappyflow

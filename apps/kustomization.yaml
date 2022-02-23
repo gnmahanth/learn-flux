@@ -4,4 +4,5 @@ namespace: redis
 resources:
   - namespace.yaml
   - redis.yaml
+  - postgresql.yaml
 
