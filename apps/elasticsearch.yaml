@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+    version: 6.8.10
+    snappyflow/appname: elasticsearch
+    snappyflow/component: datasource
+    snappyflow/projectname: elasticsearch
+spec:
+  selector:
+    matchLabels:
+      app: elasticsearch
+      version: 6.8.10
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+        version: 6.8.10
+        snappyflow/appname: elasticsearch
+        snappyflow/component: datasource
+        snappyflow/projectname: elasticsearch
+    spec:
+      initContainers:
+        - name: sysctl
+          image: busybox:latest
+          securityContext:
+            privileged: true
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
+      containers:
+        - name: elasticsearch
+          image: elasticsearch:6.8.10
+          env:
+            - name: network.host
+              value: "0.0.0.0"
+            - name: node.name
+              value: elasticsearch
+            - name: ES_JAVA_OPTS
+              value: "-Xms1024m -Xmx1024m"
+            - name: cluster.name
+              value: single-node
+          ports:
+            - containerPort: 9200
+              name: http
+              protocol: TCP
+          resources:
+              limits:
+                cpu: 2000m
+                memory: 2000Mi
+              requests:
+                cpu: 500m
+                memory: 512Mi
+          volumeMounts:
+            - name: data
+              mountPath: /usr/share/elasticsearch/data
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+    version: 6.8.10
+spec:
+  type: NodePort
+  selector:
+    app: elasticsearch
+    version: 6.8.10
+  ports:
+    - name: http
+      port: 9200
+      protocol: TCP
+      nodePort: 30200
