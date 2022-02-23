@@ -1,0 +1,52 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sfapm
+spec:
+  releaseName: sfapm
+  chart:
+    spec:
+      chart: sfapm-python3
+      sourceRef:
+        kind: HelmRepository
+        name: snappyflow
+        namespace: flux-system
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  values:
+    postgresql:
+      persistence:
+        enabled: false
+    redis:
+      persistence:
+        enabled: false
+    sfapmui:
+      replicaCount: 1
+      autoscaling:
+        enabled: false
+    sfapm:
+      replicaCount: 1
+      autoscaling:
+        enabled: false
+    sfapm_celery:
+      periodic:
+        replicaCount: 1
+        autoscaling:
+          enabled: false
+    vizbuilder:
+      replicaCount: 1
+      autoscaling:
+        enabled: false
+    vizbuilder_celery:
+      alert:
+        replicaCount: 1
+    commands:
+      replicaCount: 1
+      autoscaling:
+        enabled: false
+    sftrace:
+      replicaCount: 1
+      autoscaling:
+        enabled: false
