@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: snappyflow
+spec:
+  interval: 5m
+  url: https://snappyflow.github.io/helm-charts

@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: redis
+  namespace: redis
+spec:
+  releaseName: podinfo
+  chart:
+    spec:
+      chart: redis
+      sourceRef:
+        kind: HelmRepository
+        name: snappyflow
+        namespace: flux-system
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  values:
+    persistence:
+      enabled: false
+    global:
+      key: mly/3C73Wo4Ujd/+KeKaSG14ZyZ0l3hiMJWo2e94uQBfRvJDnITQd3qSVgyLWQip8ZePTuJUe5/yQkq+CzTFMXedlNXIoKgtBakN5yQIq6WsgQ4CnwWatk33EDK6lx6xnMxk2WDyN03qP+eB5FvLLv1mrLNy+xeQmmcAcYYWS6N+iWolcAlO5uqWdv9wGOxU
