@@ -2,9 +2,10 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: redis
-  namespace: redis
+  namespace: flux-system
 spec:
-  releaseName: podinfo
+  releaseName: test-redis
+  targetNamespace: redis
   chart:
     spec:
       chart: redis
