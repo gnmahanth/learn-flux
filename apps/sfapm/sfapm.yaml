@@ -16,6 +16,8 @@ spec:
     remediation:
       retries: 3
   values:
+    imagePullSecrets:
+      - snappyflowdockersecret
     postgresql:
       persistence:
         enabled: false
