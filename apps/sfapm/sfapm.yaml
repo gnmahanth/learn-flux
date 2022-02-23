@@ -17,7 +17,7 @@ spec:
       retries: 3
   values:
     imagePullSecrets:
-      - snappyflowdockersecret
+      - name: snappyflowdockersecret
     postgresql:
       persistence:
         enabled: false
