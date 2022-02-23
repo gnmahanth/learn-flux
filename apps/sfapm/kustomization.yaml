@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: apm
 resources:
   - namespace.yaml
-  - sfapm.yaml
+  # - sfapm.yaml
