@@ -33,8 +33,10 @@ spec:
       autoscaling:
         enabled: false
       resources:
-        limits: {}
-        requests: 
+        limits: 
+          cpu: 1000m
+          memory: 2000Mi
+        requests:
           cpu: 100m
           memory: 256Mi
     sfapm_celery:
