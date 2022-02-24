@@ -8,3 +8,5 @@ configMapGenerator:
   - name: sfapm-helm-values
     files:
       - "values.yaml=values.yaml"
+configurations:
+  - kustomizeconfig.yaml
