@@ -15,3 +15,21 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: sfapm-helm-values
+  postRenderers:
+    - kustomize:
+        patchesStrategicMerge:
+          - kind: Deployment
+            apiVersion: apps/v1
+            metadata:
+              name: sfapm-sfapm-python3-apm
+            spec:
+              template:
+                spec:
+                  containers:
+                    - name: sfapm
+                      args:
+                        - gunicorn snappyflow.wsgi:application --workers=2 --threads=4 --timeout=120
+                      readinessProbe:
+                        initialDelaySeconds: 120
+                      livenessProbe:
+                        initialDelaySeconds: 120
