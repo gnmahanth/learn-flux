@@ -12,9 +12,6 @@ spec:
         name: snappyflow
         namespace: flux-system
   interval: 5m
-  install:
-    remediation:
-      retries: 3
   values:
     imagePullSecrets:
       - name: snappyflowdockersecret
@@ -24,38 +21,38 @@ spec:
     redis:
       persistence:
         enabled: false
-    sfapmui:
-      replicaCount: 1
-      autoscaling:
-        enabled: false
-    sfapm:
-      replicaCount: 1
-      autoscaling:
-        enabled: false
-      resources:
-        limits: 
-          cpu: 1000m
-          memory: 2000Mi
-        requests:
-          cpu: 100m
-          memory: 256Mi
-    sfapm_celery:
-      periodic:
-        replicaCount: 1
-        autoscaling:
-          enabled: false
-    vizbuilder:
-      replicaCount: 1
-      autoscaling:
-        enabled: false
-    vizbuilder_celery:
-      alert:
-        replicaCount: 1
-    commands:
-      replicaCount: 1
-      autoscaling:
-        enabled: false
-    sftrace:
-      replicaCount: 1
-      autoscaling:
-        enabled: false
+    # sfapmui:
+    #   replicaCount: 1
+    #   autoscaling:
+    #     enabled: false
+    # sfapm:
+    #   replicaCount: 1
+    #   autoscaling:
+    #     enabled: false
+    #   resources:
+    #     limits: 
+    #       cpu: 1000m
+    #       memory: 2000Mi
+    #     requests:
+    #       cpu: 100m
+    #       memory: 256Mi
+    # sfapm_celery:
+    #   periodic:
+    #     replicaCount: 1
+    #     autoscaling:
+    #       enabled: false
+    # vizbuilder:
+    #   replicaCount: 1
+    #   autoscaling:
+    #     enabled: false
+    # vizbuilder_celery:
+    #   alert:
+    #     replicaCount: 1
+    # commands:
+    #   replicaCount: 1
+    #   autoscaling:
+    #     enabled: false
+    # sftrace:
+    #   replicaCount: 1
+    #   autoscaling:
+    #     enabled: false
