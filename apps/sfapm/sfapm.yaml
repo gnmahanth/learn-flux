@@ -21,6 +21,7 @@ spec:
     redis:
       persistence:
         enabled: false
+    enableDebug: true
     # sfapmui:
     #   replicaCount: 1
     #   autoscaling:
