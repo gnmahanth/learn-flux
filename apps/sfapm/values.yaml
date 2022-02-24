@@ -1,0 +1,81 @@
+enableDebug: true
+
+imagePullSecrets:
+  - name: snappyflowdockersecret
+
+sfapmui:
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+  image:
+    repository: snappyflowml/sfapm-ui
+    tag: 3.1.1036-dev
+    pullPolicy: IfNotPresent
+
+sfapm:
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+  image:
+    repository: snappyflowml/sfapm-server
+    tag: 4.0.750-python3-master
+    pullPolicy: IfNotPresent
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1000Mi
+    requests:
+      cpu: 50m
+      memory: 256Mi
+
+sfapm_celery:
+  periodic:
+    replicaCount: 1
+    autoscaling:
+      enabled: false
+
+vizbuilder:
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+  image:
+    repository: snappyflowml/sfapm-vizbuilder
+    tag: 4.0.317-python3-master
+    pullPolicy: IfNotPresent
+
+vizbuilder_celery:
+  alert:
+    replicaCount: 1
+
+commands:
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+  image:
+    repository: snappyflowml/sfapm-commands
+    tag: 1.0.31-master
+    pullPolicy: IfNotPresent
+
+sftrace:
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+  image:
+    repository: snappyflowml/sftrace-server
+    tag: latest
+    pullPolicy: IfNotPresent
+
+redis:
+  persistence:
+    enabled: false
+
+postgresql:
+  persistence:
+    enabled: false
+
+cloud:
+  aws:
+    enable: false
+  gcs:
+    enable: false
+

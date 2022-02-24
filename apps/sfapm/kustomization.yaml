@@ -4,3 +4,7 @@ namespace: apm
 resources:
   - namespace.yaml
   - sfapm.yaml
+configMapGenerator:
+  - name: sfapm-helm-values
+    files:
+      - "values.yaml=values.yaml"
