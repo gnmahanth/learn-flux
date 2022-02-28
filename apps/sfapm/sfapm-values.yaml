@@ -20,13 +20,8 @@ sfapm:
     repository: snappyflowml/sfapm-server
     tag: 4.0.750-python3-master
     pullPolicy: IfNotPresent
-  resources:
-    limits:
-      cpu: 1000m
-      memory: 1000Mi
-    requests:
-      cpu: 50m
-      memory: 256Mi
+  ingress:
+    enabled: true
 
 sfapm_celery:
   periodic:
